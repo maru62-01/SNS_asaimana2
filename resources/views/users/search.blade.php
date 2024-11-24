@@ -24,7 +24,7 @@
             @foreach ($users as $user)
                 {{-- as は、ループ内で現在の要素をどのように扱うかを指定 --}}
                 <li>{{ $user->username }}
-                    <img src="{{ asset('images/' . $user->images) }}">
+                    <img src="{{ asset('storage/' . $user->images) }}">
 
                 </li>
             @endforeach
