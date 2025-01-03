@@ -34,4 +34,67 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    // フォローをした行った人用のリレーション
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
+    }
+
+    // フォローをされた人用のリレーション
+    public function followed()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+    }
+
+
+    // 「ログイン中のユーザーがフォローしているユーザー」を中間テーブルfollowsを使って取得
+    // 多対多の関係
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
+    }
+    // followsの中のollowing_id', 'followed_id'
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+    }
+    // フォローしているか
+    public function isFollowing($user_id)
+    {
+        return (bool) $this->following()->where('followed_id', $user_id)->first();
+    }
+
+
+    // public function isFollowing(Int $user_id)
+    // {
+    //     return (bool) $this->follows->where('followed_id', $user_id)->first();
+    // }
+    // public function posts()
+    // {
+    //     return $this->hasMany(Post::class, 'user_id', 'id');
+    // }
+
+
+
+
+
+
+    //     // 上記メソッドを揃える
+    //     return $this->following()->attach($user_id);
+    // }
+
+    // // フォローを解除する
+    // public function unfollow($user_id)
+    // {
+    //     return $this->following()->detach($user_id);
+    // }
+
+
+    // // フォローされているか
+    // public function isFollowed($user_id)
+    // {
+    //     return (bool) $this->followed()->where('following_id', $user_id)->first();
+    // }
 }
