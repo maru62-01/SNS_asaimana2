@@ -5,8 +5,7 @@
 
     <div class="post">
         {!! Form::open(['url' => '/post/create']) !!}
-        <img class="redicon" src="images/icon1.png">
-
+        <img class="redicon" src="{{ asset('storage/' . Auth::user()->icon) }}">
         <textarea name="coment" rows="15" cols="80" minlength="1" maxlength="150" placeholder="投稿内容を入力してださい。"></textarea>
 
         <button type="submit"><img class="post-icon" src="images/post.png"></a></button>
