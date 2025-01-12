@@ -54,10 +54,10 @@
                 <p>〇〇さんの</p>
                 <p>フォロー数</p>
                 <p>〇〇名</p>
-                <p class="btn"><a href="{{ url('/follow-list') }}">フォローリスト</a></p>
+                <p class="btn"><a href="{{ url('/followlist') }}">フォローリスト</a></p>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
-                <p class="btn"><a href="{{ url('/follower-list') }}">フォロワーリスト</a></p>
+                <p class="btn"><a href="{{ url('/followerlist') }}">フォロワーリスト</a></p>
             </div>
             <p class="btn"><a href="{{ url('/search') }}">ユーザー検索</a></p>
         </div>

@@ -12,11 +12,21 @@ class UsersController extends Controller
 {
 
     // ユーザープロフィールページを表示
-    public function profile()
+    public function profile($id)
+    // $id　リクエスト時に渡される「ユーザーID」
     {
-        return view('users.profile');
-    }
+        // ユーザー情報を取得
+        $user = User::findOrFail($id);
 
+        // ユーザーの投稿情報を取得
+        $posts = $user->posts; // Userモデルでpostsリレーションが定義されていると仮定
+
+        // プロフィールビューを返す
+        return view('users.profile', [
+            'user' => $user,
+            'posts =>$posts'
+        ]);
+    }
     // ユーザー検索ページを表示
     public function search(Request $request)
     {

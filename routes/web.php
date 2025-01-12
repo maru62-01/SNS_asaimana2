@@ -42,14 +42,24 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/top', 'PostsController@index');
 
-    Route::get('/profile', 'UsersController@profile');
+    // プロフィールページのルートを定義
+    Route::get('/profile/{id}', 'UsersController@profile')->name('profile');
+    // {id}がURLパラメーター　
 
     Route::get('/search', 'UsersController@search');
 
-    Route::get('/follow-list', 'PostsController@index');
 
-    Route::get('/follower-list', 'PostsController@index');
+    //フォロー・フォロー解除
+    Route::post('/unfollow/{id}', 'UsersController@unfollow')->name('unfollow');
+    Route::post('/follow/{id}', 'UsersController@follow')->name('follow');
+
+    Route::get('/followlist', 'FollowsController@followList');
+    Route::get('/followerlist', 'FollowsController@followerList');
 });
+
+
+
+
 
 // ログアウトのルーティング
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
