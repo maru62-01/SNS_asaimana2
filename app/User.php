@@ -35,6 +35,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+
     // フォローをした行った人用のリレーション
     public function following()
     {
@@ -67,15 +68,6 @@ class User extends Authenticatable
     }
 
 
-
-    // public function isFollowing(Int $user_id)
-    // {
-    //     return (bool) $this->follows->where('followed_id', $user_id)->first();
-    // }
-    // public function posts()
-    // {
-    //     return $this->hasMany(Post::class, 'user_id', 'id');
-    // }
 
 
 
