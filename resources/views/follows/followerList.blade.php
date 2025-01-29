@@ -20,8 +20,9 @@
             @foreach ($posts as $post)
                 <div class="Post-item">
                     {{-- 投稿者のアイコンにクリックできる --}}
-                    <a href="{{ route('profile', ['id' => $follower->id]) }}">
-                        <img src="{{ asset('storage/' . $follower->images) }}" alt="フォロワー画像">
+                    <a href="{{ route('profile', ['id' => $post->user->id]) }}">
+                        {{-- 「この投稿をした人のID」 --}}
+                        <img src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像"> </a>
                     </a>
 
                     {{-- 投稿内容 --}}

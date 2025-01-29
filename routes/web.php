@@ -42,9 +42,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/top', 'PostsController@index');
 
+
+    Route::get('/profile/update', 'UsersController@profileUpdate');
+
+
     // プロフィールページのルートを定義
     Route::get('/profile/{id}', 'UsersController@profile')->name('profile');
     // {id}がURLパラメーター　
+
+
 
     Route::get('/search', 'UsersController@search');
 

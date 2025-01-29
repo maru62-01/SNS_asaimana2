@@ -26,7 +26,7 @@
     <header>
         <div id = "head">
             <h1><a href="{{ url('/top') }}"><img class="top-icon" src="images/atlas.png"></a></h1>
-            <p class="home-name">〇〇さん<img src="images/icon1.png"></p>
+            <p class="home-name">{{ Auth::user()->username }} さん<img src="images/icon1.png"></p>
 
             <!-- アコーディオンメニュー -->
             <div id="section-cont">
@@ -36,7 +36,7 @@
                 <div class="menu">
                     <ul>
                         <li class="acordion-code"><a href="{{ url('/top') }}">HOME</a></li>
-                        <li class="acordion-code"><a href="{{ url('/profile') }}">プロフィール編集</a></li>
+                        <li class="acordion-code"><a href="{{ url('/profile/update') }}">プロフィール編集</a></li>
                         <li class="acordion-code"><a href="{{ url('/logout') }}">ログアウト</a></li>
                     </ul>
                 </div>

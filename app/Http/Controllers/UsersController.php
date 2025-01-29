@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User; //User クラスをインポート
+use Illuminate\Support\Facades\Validator;
+
+use App\Models\Post;
+
 
 // Authファサードをインポート
 
@@ -15,16 +19,14 @@ class UsersController extends Controller
     public function profile($id)
     // $id　リクエスト時に渡される「ユーザーID」
     {
-        // ユーザー情報を取得
-        $user = User::findOrFail($id);
-
-        // ユーザーの投稿情報を取得
-        $posts = $user->posts; // Userモデルでpostsリレーションが定義されていると仮定
-
+        // ユーザーの投稿を新しい順に表示
+        $user = User::findOrFail($id); // ユーザーを取得
+        $posts = $user->posts()->orderBy('created_at', 'desc')->get();
+        // 'desc' は「降順」 order・行の並べ替え
         // プロフィールビューを返す
         return view('users.profile', [
             'user' => $user,
-            'posts =>$posts'
+            'posts' => $posts,
         ]);
     }
     // ユーザー検索ページを表示
@@ -101,5 +103,23 @@ class UsersController extends Controller
             $user->save(); // ユーザーの情報をデータベースに保存
             return redirect("/user/{$user->id}")->with('user', $user); // ユーザーのプロフィールページにリダイレクト
         }
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            // 記述方法：Validator::make('値の配列', '検証ルールの配列');
+            'username' => 'required|string|min:2|max:12',
+            'mail' => 'required|string|email|min:5|max:40|unique:users',
+            'newPassword' => 'required|string|min:8|max:20|regex:/^[a-zA-Z0-9]+$/',
+            'password-confirm' => 'required|string|same:newPassword',
+            // same:newPassword=newPasswordと一致しているか確認
+            'bio' => 'string|max:150',
+            'IconImage' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
+            // required＝必須　string＝文字列
+
+        ]);
+
+        return view('users.editprofile');
     }
 }

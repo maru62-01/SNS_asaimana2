@@ -19,10 +19,10 @@
             {{-- フォローしているユーザーの投稿を表示 --}}
             @foreach ($posts as $post)
                 <div class="Post-item">
-                    {{-- 投稿者のアイコンにクリックできる --}}
 
+                    {{-- 「この投稿をした人のID」 --}}
                     <a href="{{ route('profile', ['id' => $post->user->id]) }}">
-                        {{-- 「この投稿をした人のID」 --}}
+                        {{-- 投稿者のアイコンにクリックできる --}}
                         <img src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像"> </a>
                     <p>:{{ $post->user->username }}</p>
                     <p>:{{ $post->post }}</p>
