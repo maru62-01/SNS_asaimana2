@@ -19,6 +19,7 @@
     @endphp
 
     @if ($currentUser->following()->where('followed_id', $user->id)->exists())
+        {{-- exists その条件に一致するデータが 存在するかどうか  --}}
         {{-- フォロー解除ボタン --}}
         {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
         @csrf <!-- CSRFトークンを追加 -->
@@ -31,6 +32,7 @@
         <input type="submit" class="bth bth-primary" value="フォローする">
         {!! Form::close() !!}
     @endif
+
 
     <!-- 投稿表示 -->
     <div class="user-posts">

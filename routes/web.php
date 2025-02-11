@@ -42,11 +42,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/top', 'PostsController@index');
 
+    // プロフィール編集
+    Route::get('/editprofile', 'UsersController@edit');
 
     Route::get('/profile/update', 'UsersController@profileUpdate');
 
 
-    // プロフィールページのルートを定義
+    // プロフィールページのルートを定義 他ユーザーのプロフィール
     Route::get('/profile/{id}', 'UsersController@profile')->name('profile');
     // {id}がURLパラメーター　
 

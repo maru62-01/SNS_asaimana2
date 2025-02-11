@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\User; //User クラスをインポート
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
+use Illuminate\Support\Facades\View; // ← 追加
+// use Illuminate\Support\Facades\View; // ← 追加
+// use Illuminate\Support\Facades\Auth; // ← 追加
+
 
 
 // Authファサードをインポート
@@ -23,9 +27,26 @@ class UsersController extends Controller
         $posts = $user->posts()->orderBy('created_at', 'desc')->get();
         // 'desc' は「降順」 order・行の並べ替え
         // プロフィールビューを返す
+
+        // フォロー数（このユーザーがフォローしている人数）
+        $followingCount = $user->following()->count();
+
+        // フォロワー数（このユーザーをフォローしている人数）
+        $followersCount = $user->followers()->count();
+        // すべてのビューで使用できるようにする
+        view()->share(
+            'followingCount',
+            $followingCount
+        );
+        view()->share(
+            'followersCount',
+            $followersCount
+        );
+
         return view('users.profile', [
             'user' => $user,
             'posts' => $posts,
+
         ]);
     }
     // ユーザー検索ページを表示
@@ -104,6 +125,11 @@ class UsersController extends Controller
         }
     }
 
+    public function edit()
+    {
+        return view('users.editprofile'); // editprofile.blade.phpを返す
+    }
+
     public function profileUpdate(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -119,6 +145,38 @@ class UsersController extends Controller
 
         ]);
 
+        // バリデーションエラー時の処理
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // ユーザー情報の更新
+        $user = Auth::user();
+        $user->username = $request->input('username');
+        $user->mail = $request->input('mail');
+
+        // パスワードが入力されている場合のみ更新
+        if (!empty($request->input('newPassword'))) {
+            $user->password = bcrypt($request->input('newPassword'));
+        }
+
+        $user->bio = $request->input('bio');
+
+        // アイコン画像の更新処理
+        if ($request->hasFile('IconImage')) {
+            $imagePath = $request->file('IconImage')->store('public/profile_images');
+            $user->images = basename($imagePath);
+        }
+
+        // 更新を保存
+        $user->save();
+
         return view('users.editprofile');
+
+        // 更新後にプロフィール画面へリダイレクト
+        // // 更新後、topページへリダイレクト
+        // return redirect()->route('edit')->with('success', 'プロフィールが更新されました！');
     }
 }

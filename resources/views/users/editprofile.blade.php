@@ -13,11 +13,11 @@
           <p>パスワード</p>
           <input type="password" name="password" placeholder="新しいパスワードを入力してください" />
           <p>パスワード確認</p>
-          <input type="password" name="password-confirm" value="" />
+          <input type="password" name="password_confirmation" value="" />
           <p>自己紹介</p>
           <input type="text" name="bio" value="{{ Auth::user()->bio }}" />
           <p>アイコン画像</p>
-          <input type="file" name="icon" value="" />
+          <input type="file" name="IconImage" value="" />
           <br />
           <input type="submit" value="更新" /> {{ Form::token() }}
           {!! Form::close() !!}

@@ -36,7 +36,7 @@
                 <div class="menu">
                     <ul>
                         <li class="acordion-code"><a href="{{ url('/top') }}">HOME</a></li>
-                        <li class="acordion-code"><a href="{{ url('/profile/update') }}">プロフィール編集</a></li>
+                        <li class="acordion-code"><a href="{{ url('/editprofile') }}">プロフィール編集</a></li>
                         <li class="acordion-code"><a href="{{ url('/logout') }}">ログアウト</a></li>
                     </ul>
                 </div>
@@ -51,13 +51,13 @@
         </div>
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
-                <p class="btn"><a href="{{ url('/followlist') }}">フォローリスト</a></p>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
-                <p class="btn"><a href="{{ url('/followerlist') }}">フォロワーリスト</a></p>
+                <p>{{ Auth::user()->username }}さんの</p>
+                {{-- 👇app/providers/AppServiceProviderに記載あり   --}}
+                <p>フォロー数 {{ $followingCount }} 人</p>
+                <a class="btn" href="{{ url('/followlist') }}">フォローリスト</a>
+
+                <p>フォロワー数 {{ $followersCount }} 人</p>
+                <a class="btn" href="{{ url('/followerlist') }}">フォロワーリスト</a>
             </div>
             <p class="btn"><a href="{{ url('/search') }}">ユーザー検索</a></p>
         </div>
