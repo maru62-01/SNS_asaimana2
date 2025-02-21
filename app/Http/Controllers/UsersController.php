@@ -132,51 +132,52 @@ class UsersController extends Controller
 
     public function profileUpdate(Request $request)
     {
+        // dd($request->all());  // フォームのデータを確認
+
         $validator = Validator::make($request->all(), [
-            // 記述方法：Validator::make('値の配列', '検証ルールの配列');
+            //             // 記述方法：Validator::make('値の配列', '検証ルールの配列');
             'username' => 'required|string|min:2|max:12',
-            'mail' => 'required|string|email|min:5|max:40|unique:users',
-            'newPassword' => 'required|string|min:8|max:20|regex:/^[a-zA-Z0-9]+$/',
-            'password-confirm' => 'required|string|same:newPassword',
-            // same:newPassword=newPasswordと一致しているか確認
-            'bio' => 'string|max:150',
-            'IconImage' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
-            // required＝必須　string＝文字列
+            'mail' => 'required|string|min:5|max:40|unique:users,mail,' . Auth::id(), // unique設定で現在のユーザーを除外
+            'newPassword' => 'required|alpha_dash|min:8|max:20|string',
+            'password_confirm' => 'required|alpha_dash|min:8|max:20|string|same:newPassword',
+            // // same:newPassword=newPasswordと一致しているか確認
+            'bio' => 'nullable|string|max:150',
+            'IconImage' => 'image|mimes:jpg,png,bmp,gif,svg',
+            // // required＝必須　string＝文字列
 
         ]);
 
         // バリデーションエラー時の処理
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+                ->withErrors($validator) //エラー情報を返す
+                ->withInput(); //入力内容を保持
         }
 
-        // ユーザー情報の更新
+        // ユーザー情報の更新【username/mail】
         $user = Auth::user();
-        $user->username = $request->input('username');
-        $user->mail = $request->input('mail');
-
-        // パスワードが入力されている場合のみ更新
+        $user->username = $request->input('username') ?: $user->username; // 新しい値が空なら既存の値を使用
+        $user->mail = $request->input('mail') ?: $user->mail; // 新しい値が空なら既存の値を使用
+        // パスワードが入力されている場合のみ更新【newPassword】
         if (!empty($request->input('newPassword'))) {
-            $user->password = bcrypt($request->input('newPassword'));
+            $user->password = bcrypt($request->input('newPassword')); //bcrypt() 暗号化
         }
 
-        $user->bio = $request->input('bio');
+        // 自己紹介【bio】
+        $user->bio = $request->input('bio'); // 新しい値が空でも更新する $user->bio　$userオブジェクトのbioプロパティ
 
-        // アイコン画像の更新処理
+        // アイコン画像の更新処理【IconImage】
         if ($request->hasFile('IconImage')) {
-            $imagePath = $request->file('IconImage')->store('public/profile_images');
+            // 画像をアップロードして storage/app/public に保存
+            $imagePath = $request->file('IconImage')->store('public');
+
+            // ファイル名だけを取得してユーザー情報に保存
             $user->images = basename($imagePath);
         }
 
-        // 更新を保存
+        // 変更をデータベースに保存
         $user->save();
-
-        return view('users.editprofile');
-
-        // 更新後にプロフィール画面へリダイレクト
+        return redirect('/top');
         // // 更新後、topページへリダイレクト
-        // return redirect()->route('edit')->with('success', 'プロフィールが更新されました！');
     }
 }

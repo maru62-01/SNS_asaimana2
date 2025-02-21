@@ -8,7 +8,7 @@
     <div class="profile-items">
         <img src="{{ asset('storage/' . $user->images) }}" alt="プロフィール画像">
         <h1>ユーザー名{{ $user->username }}</h1> <!-- ユーザー名 -->
-        <h2>自己紹介</h2> <!-- 自己紹介 -->
+        <h2>自己紹介{{ $user->bio }}</h2> <!-- 自己紹介 -->
     </div>
     {{-- </a> --}}
 

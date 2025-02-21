@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/post/create', 'PostsController@postCreate');
 
-    Route::post('/post/update', 'PostsController@postUpdate');
+    Route::post('/profile/update', 'UsersController@profileUpdate')->name('profile.update');
 
     Route::get('/post/{id}/delete', 'PostsController@postDelete');
 
@@ -55,10 +55,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/search', 'UsersController@search');
+    Route::post('/unfollow/{id}', 'UsersController@unfollow')->name('unfollow');
 
 
     //フォロー・フォロー解除
-    Route::post('/unfollow/{id}', 'UsersController@unfollow')->name('unfollow');
     Route::post('/follow/{id}', 'UsersController@follow')->name('follow');
 
     Route::get('/followlist', 'FollowsController@followList');
