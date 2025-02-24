@@ -166,14 +166,23 @@ class UsersController extends Controller
         // 自己紹介【bio】
         $user->bio = $request->input('bio'); // 新しい値が空でも更新する $user->bio　$userオブジェクトのbioプロパティ
 
-        // アイコン画像の更新処理【IconImage】
         if ($request->hasFile('IconImage')) {
-            // 画像をアップロードして storage/app/public に保存
-            $imagePath = $request->file('IconImage')->store('public');
+            // 画像を public/images フォルダに保存
+            $imagePath = $request->file('IconImage')->store('public/images');
 
             // ファイル名だけを取得してユーザー情報に保存
-            $user->images = basename($imagePath);
+            $user->images = str_replace('public/', '', $imagePath);
         }
+
+
+        // // アイコン画像の更新処理【IconImage】
+        // if ($request->hasFile('IconImage')) {
+        //     // 画像をアップロードして storage/app/public に保存
+        //     $imagePath = $request->file('IconImage')->store('public');
+
+        //     // ファイル名だけを取得してユーザー情報に保存
+        //     $user->images = basename($imagePath);
+        // }
 
         // 変更をデータベースに保存
         $user->save();

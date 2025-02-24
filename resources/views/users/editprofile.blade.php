@@ -11,13 +11,13 @@
           <p>メールアドレス</p>
           <input type="text" name="mail" value="{{ Auth::user()->mail }}" />
           <p>パスワード</p>
-          <input type="password" name="newPassword" placeholder="新しいパスワードを入力してください" />
+          <input type="password" name="newPassword" value="" />
           <p>パスワード確認</p>
           <input type="password" name="password_confirm" value="" />
           <p>自己紹介</p>
           <input type="text" name="bio" value="{{ Auth::user()->bio }}" />
           <p>アイコン画像</p>
-          <input type="file" name="IconImage" value="" />
+          <input type="file" name="IconImage" value="{{ Auth::user()->images }}" />
           <br />
           <input type="submit" value="更新" />
           {!! Form::close() !!}
