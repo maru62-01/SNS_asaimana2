@@ -26,9 +26,10 @@
     <header>
         <div id = "head">
             <h1><a href="{{ url('/top') }}"><img class="top-icon" src="images/atlas.png"></a></h1>
-            <p class="home-name">{{ Auth::user()->username }} さん<img src="images/icon1.png"></p>
-
-            <!-- アコーディオンメニュー -->
+            <p class="home-name">
+                <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
+                <span>{{ Auth::user()->username }} さん</span>
+            </p> <!-- アコーディオンメニュー -->
             <div id="section-cont">
                 <button type="button" class="menu-btn">
                     <span class="inn"></span>

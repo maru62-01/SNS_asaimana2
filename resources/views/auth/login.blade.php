@@ -8,9 +8,9 @@
     <div>
         <p>AtlasSNSへようこそ</p>
 
-        {{ Form::label('e-mail') }}
+        {{ Form::label('メールアドレス') }}
         {{ Form::text('mail', null, ['class' => 'input']) }}
-        {{ Form::label('password') }}
+        {{ Form::label('パスワード') }}
         {{ Form::password('password', ['class' => 'input']) }}
 
         {{ Form::submit('ログイン') }}

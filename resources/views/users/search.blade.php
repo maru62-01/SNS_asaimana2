@@ -26,30 +26,35 @@
     <ul>
         @foreach ($users as $user)
             {{-- as は、ループ内で現在の要素をどのように扱うかを指定 --}}
-            <li>{{ $user->username }}
-                <img src="{{ asset('storage/' . $user->images) }}">
-                {{--  asset⇒publicディレクトリのパスを返す関数 --}}
-            </li>
+            <div class="user-list">
+                <li class="user-item"><img class="redicon" src="{{ asset('storage/' . $user->images) }}">
+                    {{-- 特定のユーザーの画像を表示するためのコード --}}
+                    {{--  asset⇒publicディレクトリのパスを返す関数 --}}
+                    {{ $user->username }}
+                    {{-- userの名前 --}}
 
-            {{-- フォロー機能の実装 --}}
-            @php
-                $currentUser = Auth::user(); // 現在のユーザーを取得
-                //$currentUser 現在ログインしているユーザーの情報を格納するために使用
-            @endphp
 
-            @if ($currentUser->following()->where('followed_id', $user->id)->exists())
-                {{-- フォロー解除ボタン --}}
-                {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
-                @csrf <!-- CSRFトークンを追加 -->
-                <input type="submit" class="bth bth-danger" value="フォロー解除">
-                {!! Form::close() !!}
-            @else
-                {{-- フォローボタン --}}
-                {!! Form::open(['url' => route('follow', ['id' => $user->id]), 'method' => 'post']) !!}
-                @csrf <!-- CSRFトークンを追加 -->
-                <input type="submit" class="bth bth-primary" value="フォローする">
-                {!! Form::close() !!}
-            @endif
+                    {{-- フォロー機能の実装 --}}
+                    @php
+                        $currentUser = Auth::user(); // 現在のユーザーを取得
+                        //$currentUser 現在ログインしているユーザーの情報を格納するために使用
+                    @endphp
+
+                    @if ($currentUser->following()->where('followed_id', $user->id)->exists())
+                        {{-- フォロー解除ボタン --}}
+                        {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
+                        @csrf <!-- CSRFトークンを追加 -->
+                        <input type="submit" class=".follow-button" value="フォロー解除">
+                        {!! Form::close() !!}
+                    @else
+                        {{-- フォローボタン --}}
+                        {!! Form::open(['url' => route('follow', ['id' => $user->id]), 'method' => 'post']) !!}
+                        @csrf <!-- CSRFトークンを追加 -->
+                        <input type="submit" class=".follow-button" value="フォローする">
+                        {!! Form::close() !!}
+                    @endif
+                </li>
         @endforeach
     </ul>
+    </div>
 @endsection

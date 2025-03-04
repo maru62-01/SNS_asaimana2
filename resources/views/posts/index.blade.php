@@ -6,6 +6,7 @@
     <div class="post">
         {!! Form::open(['url' => '/post/create']) !!}
         <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
+        {{-- 現在ログインしているユーザーの画像を取得 --}}
         <textarea name="coment" rows="15" cols="80" minlength="1" maxlength="150" placeholder="投稿内容を入力してださい。"></textarea>
 
         <button type="submit"><img class="post-icon" src="images/post.png"></a></button>
@@ -38,7 +39,7 @@
                 <li class="username">{{ $list->user->username }}</li>
                 <li>{{ $list->post }}</li>
                 <li>{{ $list->created_at }}</li>
-                <li> <img class="redicon" src="{{ asset('storage/icon1.png') }}" alt="アイコン"></li>
+                <li> <img class="redicon" src="{{ asset('storage/' . $list->user->images) }}"></li>
                 {{-- ＄list-> post $list->user->username --}}
             </ul>
         @endforeach

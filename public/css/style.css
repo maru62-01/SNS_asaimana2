@@ -24,17 +24,44 @@ header {
 
 } */
 
-/* アイコンを丸く表示 */
+/* ユーザーアイコン */
 .redicon {
-    width: 60px;
-    /* アイコンの幅 */
-    height: 60px;
-    /* アイコンの高さ */
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    /* 丸くする */
-    object-fit: cover;
-    /* 画像をトリミングして中央配置 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
+
+/* divタグ 　Userのリスト*/
+.user-list {
+    display: flex;
+    flex-direction: column;
+    /* ユーザーを縦に並べる */
+    margin: 0 auto;
+}
+
+/* userの名前 */
+.user-item {
+    display: flex;
+
+    align-items: center;
+    padding: 30px;
+    gap: 40px;
+    /* アイコンと名前の間隔 */
+    width: 300px;
+    /* 横幅を統一 */
+}
+
+.follow-button {
+    margin-left: 30px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
 
 /* main content */
@@ -170,13 +197,13 @@ textarea {
 }
 
 /* 自分のアイコン */
-img.redicon {
+/* img.redicon {
     text-align: right;
-    /* テキストを右揃えにする */
-    transform: translateY(-110px);
-    /* 要素を水平方向や垂直方向に移動することができる */
+    テキストを右揃えにする */
+/* transform: translateY(-110px); */
+/* 要素を水平方向や垂直方向に移動することができる */
 
-}
+/* } */
 
 
 /* 送信ボタン */
