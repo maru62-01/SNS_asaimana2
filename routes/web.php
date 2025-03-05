@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/post/create', 'PostsController@postCreate');
 
-    Route::post('/profile/update', 'UsersController@profileUpdate')->name('profile.update');
+    Route::post('/post/update', 'postsController@postUpdate');
 
     Route::get('/post/{id}/delete', 'PostsController@postDelete');
 

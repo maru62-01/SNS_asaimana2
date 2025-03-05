@@ -12,7 +12,7 @@
                 @foreach ($follows as $follow)
                     {{-- シンボリックリンクから画像を取得 --}}
                     <a href="{{ route('profile', ['id' => $follow->id]) }}">
-                        <img src="{{ asset('storage/' . $follow->images) }}" alt="フォロー画像">
+                        <img class="redicon" src="{{ asset('storage/' . $follow->images) }}" alt="フォロー画像">
                     </a>
                 @endforeach
             </div>
@@ -23,7 +23,7 @@
                     {{-- 「この投稿をした人のID」 --}}
                     <a href="{{ route('profile', ['id' => $post->user->id]) }}">
                         {{-- 投稿者のアイコンにクリックできる --}}
-                        <img src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像"> </a>
+                        <img class="redicon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像"> </a>
                     <p>:{{ $post->user->username }}</p>
                     <p>:{{ $post->post }}</p>
                     <p>:{{ $post->created_at }}</p>

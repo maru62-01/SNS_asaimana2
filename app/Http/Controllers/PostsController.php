@@ -11,10 +11,8 @@ class PostsController extends Controller
     //
     public function index()
     {
-        // postテーブルからレコード情報を所得
-        $list = Post::get();
-        // Postテーブル」に関係あるuserデータを取得
-        $list = Post::with('user')->get();
+        // Postテーブルに関係あるuserデータを取得
+        $list = Post::with('user')->orderBy('created_at', 'desc')->get();
         // // bladeヘ返す際にデータを送る
         return view('posts.index', ['list' => $list]);
 
