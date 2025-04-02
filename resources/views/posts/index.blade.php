@@ -5,46 +5,58 @@
 
     <div class="post">
         {!! Form::open(['url' => '/post/create']) !!}
+        {{-- <div class="item"> --}}
         <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
         {{-- 現在ログインしているユーザーの画像を取得 --}}
-        <textarea name="coment" rows="15" cols="80" minlength="1" maxlength="150" placeholder="投稿内容を入力してださい。"></textarea>
+        {{-- </div> --}}
 
+        {{-- <div class="item"> --}}
+        <textarea name="coment" rows="15" cols="80" style="border: none;" minlength="1" maxlength="150"
+            placeholder="投稿内容を入力してださい。"></textarea>
+        {{-- </div> --}}
+
+        {{-- <div class="item"> --}}
         <button type="submit"><img class="post-icon" src="images/post.png"></a></button>
         {!! Form::close() !!}
+        {{-- </div> --}}
     </div>
 
 
-    <div>
-        @foreach ($list as $list)
-            {{-- as は、ループ内で現在の要素をどのように扱うかを指定 --}}
+    @foreach ($list as $list)
+        {{-- as は、ループ内で現在の要素をどのように扱うかを指定 --}}
 
-            @if ($list->user_id == Auth::id() || Auth::user()->isFollowing($list->user_id))
-                {{-- フィルタリング条件を追加 --}}
-                <div class="icon-container">
-                    <!-- 投稿を編集するための記述  -->
-                    <a class="js-modal-open" href="" post="{{ $list->post }}" post_id="{{ $list->id }}">
-                        <img class="editicon" src="images/edit.png"></a>
-
-                    {{-- 投稿を削除するための記述 --}}
-                    <a class="trah-btn" href="/post/{{ $list->id }}/delete"
-                        onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-                        <img class="trashicon" src="images/trash.png"></a>
-                    {{-- aタグは基本get送信 --}}
-
-
-                </div>
-
+        @if ($list->user_id == Auth::id() || Auth::user()->isFollowing($list->user_id))
+            {{-- フィルタリング条件を追加 --}}
+            <div class="icon-container">
+                <!-- 投稿を編集するための記述  -->
                 {{-- 投稿一覧表示 --}}
-                <ul>
+                <ul class="post-list">
                     {{-- postテーブルとuserテーブルから情報を取得 --}}
-                    <li class="username">{{ $list->user->username }}</li>
-                    <li>{{ $list->post }}</li>
-                    <li>{{ $list->created_at }}</li>
-                    <li> <img class="redicon" src="{{ asset('storage/' . $list->user->images) }}"></li>
+                    <li> <img class="posticon" src="{{ asset('storage/' . $list->user->images) }}"></li>
+                    <li class="username">{{ $list->user->username }}
+                        <P>{{ $list->post }}</P>
+                    </li>
+
+                    <li>{{ $list->created_at }}
+                        <P>
+                        <div class="button">
+                            <a class="js-modal-open" href="" post="{{ $list->post }}"
+                                post_id="{{ $list->id }}">
+                                <img class="editicon" src="images/edit.png"></a></P>
+
+                            {{-- 投稿を削除するための記述 --}}
+                            <P><a class="trah-btn" href="/post/{{ $list->id }}/delete"
+                                    onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
+                                    <img class="trashicon" src="images/trash.png"></a></P>
+                            {{-- aタグは基本get送信 --}}
+                        </div>
+                    </li>
                     {{-- ＄list-> post $list->user->username --}}
                 </ul>
-            @endif {{-- フィルタリング条件の終了 --}}
-        @endforeach
+
+            </div>
+        @endif {{-- フィルタリング条件の終了 --}}
+    @endforeach
     </div>
 @endsection
 

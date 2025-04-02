@@ -8,36 +8,98 @@ header {
     text-align: center;
 }
 
+/* atlasSNSロゴ */
+.logo {
+    width: 15%;
+    height: auto;
+}
+
 .social-text {
     font-size: 30px;
     color: white;
     text-align: center;
     /*テキストを中央揃え* */
+    font-weight: bold;
 }
 
 /* フォーム全体のコンテンツ */
-div {
-    /* background-color: #ccd8ff; */
+.login-container {
     /* 半透明の背景 */
-    background-color: rgba(0, 0, 212, 0.3);
-    padding: 50px 0;
-    width: 200px;
-    height: 130px;
-    margin: 0 auto;
+    background-color: rgba(0, 0, 212, 0.1);
+    padding: 44px;
+    width: 20%;
+    /* 上下のマージン*/
+    margin: 3% auto;
+    border-radius: 10px;
+    /* divテキストを中央揃え */
+    text-align: center;
+
 }
+
+.login {
+    text-align: right;
+    margin-top: 10%;
+}
+
 
 p {
     color: white;
 }
 
+.boldfont {
+    font-weight: bold;
+}
+
+/* 新規登録後の画面 */
+.welcome {
+    font-weight: bold;
+    margin-bottom: 15%;
+}
+
+/* 新規登録後の画面 */
+.go-welcome {
+    margin-bottom: 15%;
+}
+
+/* 新規ユーザーの方はこちら */
+a {
+    color: #fff;
+    /* 白線の追加 */
+    border-bottom: 1px solid #fff;
+}
+
+/* aタグ・新規ユーザーの位置 */
+.new-user {
+    margin-top: 15%;
+}
+
+
 /* ラベルのスタイル */
 label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    margin-top: 30px;
+    /* margin-left: 20px; */
     color: white;
+    text-align: left;
 }
 
+/* 入力内容 */
+input {
+    display: block;
+    border-radius: 5px;
+    padding: 3%;
+    /* 左右のマージンを自動に設定 */
+    /* margin: 0 auto; */
+    width: 100%;
+    /* 枠線を消す */
+    border: none;
+
+}
+
+btn {
+    display: block;
+    justify-content: flex-end
+}
 
 
 body {

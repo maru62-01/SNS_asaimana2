@@ -11,7 +11,7 @@ class PostsController extends Controller
     //
     public function index()
     {
-        // Postテーブルに関係あるuserデータを取得
+        // Postテーブルに関係あるuserデータを取得　作成日時の降順
         $list = Post::with('user')->orderBy('created_at', 'desc')->get();
         // // bladeヘ返す際にデータを送る
         return view('posts.index', ['list' => $list]);

@@ -87,15 +87,18 @@ class UsersController extends Controller
     public function unfollow($id)
     {
 
+        // ログインユーザー取得
         $user = auth()->user();
         $userToUnfollow = User::findOrFail($id);
+        //「フォローを解除される側」のユーザー情報を取得
         //指定したidが見つからなかったらエラーを返す
 
-        // フォロー関係を削除
+        // フォロー解除対象のユーザーが存在するか＝$user->idを探す
         if ($user->following()->where('followed_id', $userToUnfollow->id)->exists()) {
+            // 存在した場合、フォローを外す
             $user->following()->detach($userToUnfollow->id);
         }
-
+        // 元のページにもどる
         return back();
     }
 
@@ -104,9 +107,13 @@ class UsersController extends Controller
     {
         $user = auth()->user();
         $userToFollow = User::findOrFail($id);
+        //「フォローされる側」のユーザー情報を取得
+        //指定したidが見つからなかったらエラーを返す
+
 
         // フォロー関係を作成
         if (!$user->following()->where('followed_id', $userToFollow->id)->exists()) {
+            // 存在した場合、フォローをする
             $user->following()->attach($userToFollow->id);
         }
         return back();

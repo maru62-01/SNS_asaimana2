@@ -5,7 +5,7 @@
     {!! Form::open(['url' => '/login']) !!}
 
 
-    <div>
+    <div class="login-container">
         <p>AtlasSNSへようこそ</p>
 
         {{ Form::label('メールアドレス') }}
@@ -13,9 +13,11 @@
         {{ Form::label('パスワード') }}
         {{ Form::password('password', ['class' => 'input']) }}
 
-        {{ Form::submit('ログイン') }}
+        <div class="login">
+            <button type="submit" class="btn btn-danger btn-sm">ログイン</button>
+        </div>
 
-        <p><a href="/register">新規ユーザーの方はこちら</a></p>
+        <p class="new-user"><a href="/register">新規ユーザーの方はこちら</a></p>
 
         {!! Form::close() !!}
     </div>

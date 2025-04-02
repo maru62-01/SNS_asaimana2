@@ -7,19 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
+    {{-- Bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
-    <!-- asset関数→cssファイルと画像を呼び出す -->
-    <!--スマホ,タブレット対応-->
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!--サイトのアイコン指定-->
-    <link rel="icon" href="画像URL" sizes="16x16" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="32x32" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="48x48" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
-    <!--iphoneのアプリアイコン指定-->
-    <link rel="apple-touch-icon-precomposed" href="画像のURL" />
-    <!--OGPタグ/twitterカード-->
+</head>
+
+<!-- asset関数→cssファイルと画像を呼び出す -->
+<!--スマホ,タブレット対応-->
+{{-- Bootstrap --}}
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!--サイトのアイコン指定-->
+<link rel="icon" href="画像URL" sizes="16x16" type="image/png" />
+<link rel="icon" href="画像URL" sizes="32x32" type="image/png" />
+<link rel="icon" href="画像URL" sizes="48x48" type="image/png" />
+<link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
+<!--iphoneのアプリアイコン指定-->
+<link rel="apple-touch-icon-precomposed" href="画像のURL" />
+<!--OGPタグ/twitterカード-->
 </head>
 
 <body>
@@ -49,18 +56,23 @@
         <div id="container">
             @yield('content')
             {{-- イールド --}}
-        </div>
-        <div id="side-bar">
-            <div id="confirm">
-                <p>{{ Auth::user()->username }}さんの</p>
-                {{-- 👇app/providers/AppServiceProviderに記載あり   --}}
-                <p>フォロー数 {{ $followingCount }} 人</p>
-                <a class="btn" href="{{ url('/followlist') }}">フォローリスト</a>
-
-                <p>フォロワー数 {{ $followersCount }} 人</p>
-                <a class="btn" href="{{ url('/followerlist') }}">フォロワーリスト</a>
+            <div id="side-bar">
+                <div id="confirm">
+                    <p class="side-name">{{ Auth::user()->username }}さんの</p>
+                    {{-- 👇app/providers/AppServiceProviderに記載あり   --}}
+                    <div class="follow">
+                        <p class="follow-number">フォロー数</p>
+                        <p> {{ $followingCount }} 人</p>
+                    </div>
+                    <a href="{{ url('/followlist') }}" class="btn btn-primary custom-class">フォローリスト</a>
+                    <div class="follow">
+                        <p class="follow-numbers">フォロワー数</p>
+                        <p> {{ $followersCount }} 人</p>
+                    </div>
+                    <a href="{{ url('/followerlist') }}" class="btn btn-primary custom-class">フォロワーリスト</a>
+                    <p><a href="{{ url('/search') }}" class="btn btn-primary customs-class">ユーザー検索</a></p>
+                </div>
             </div>
-            <p class="btn"><a href="{{ url('/search') }}">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

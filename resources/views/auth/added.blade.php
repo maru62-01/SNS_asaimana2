@@ -1,15 +1,14 @@
 @extends('layouts.logout')
 
 @section('content')
+    <div class="login-container">
+        <p class="boldfont">{{ session('userName') }}さん</p>
+        <!-- sessionキーを取り出す -->
+        <p class="welcome">ようこそ!AtlasSNSへ</p>
+        <p>ユーザー登録が完了しました。</p>
+        <p class="go-welcome">早速ログインをしてみましょう。</p>
 
-<div id="clear">
-  <p>{{ session('userName') }}さん</p>
-  <!-- sessionキーを取り出す -->
-  <p>ようこそ！AtlasSNSへ！</p>
-  <p>ユーザー登録が完了しました。</p>
-  <p>早速ログインをしてみましょう。</p>
-
-  <p class="btn"><a href="/login">ログイン画面へ</a></p>
-</div>
-
+        {{-- onclick属性　クリックされたときに実行する動作を指定するための属性 --}}
+        <button type="submit" class="btn btn-danger btn-sm">ログイン画面へ</button onclick="location.href='/login';">
+    </div>
 @endsection

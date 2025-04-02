@@ -36,18 +36,21 @@
 
                     {{-- フォロー機能の実装 --}}
                     @php
-                        $currentUser = Auth::user(); // 現在のユーザーを取得
+                        $currentUser = Auth::user(); // ①現在のユーザーを取得
                         //$currentUser 現在ログインしているユーザーの情報を格納するために使用
                     @endphp
 
+                    {{-- ②followed_idが$user->idのデータを検索する --}}
+                    {{-- ログインユーザーのフォローしている人の中に、$user->id(今みているID)のデータが存在するか？ --}}
                     @if ($currentUser->following()->where('followed_id', $user->id)->exists())
-                        {{-- フォロー解除ボタン --}}
+                        {{-- exists　イグジストス --}}
+                        {{-- ③フォロー解除ボタン※フォローしている場合(ture) --}}
                         {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
                         @csrf <!-- CSRFトークンを追加 -->
                         <input type="submit" class=".follow-button" value="フォロー解除">
                         {!! Form::close() !!}
                     @else
-                        {{-- フォローボタン --}}
+                        {{-- ④フォローボタン ※フォローしいない場合(false) --}}
                         {!! Form::open(['url' => route('follow', ['id' => $user->id]), 'method' => 'post']) !!}
                         @csrf <!-- CSRFトークンを追加 -->
                         <input type="submit" class=".follow-button" value="フォローする">

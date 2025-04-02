@@ -4,6 +4,7 @@ html {}
 
 body {}
 
+
 /* header */
 header {
     background: #186AC9;
@@ -17,22 +18,94 @@ header {
     /*  */
 }
 
-/* #head {
+.post {
+    width: 100%;
+    align-items: center;
+    /* アイテムを中央揃えにする（オプション） */
+    border-bottom: 8px solid #e0e0e0;
+}
+
+/* 投稿画面　 */
+.icon-container {
+    display: flex;
+    /* アイコンを右端に揃える */
+    border-bottom: 1px solid #ddd;
+    gap: 20px;
+    /* アイコン同士の間に余白を設定 */
+    margin-top: 10px;
+}
+
+/* フォローユーザーの投稿 */
+.post-list {
+    list-style: none;
     display: flex;
     justify-content: space-between;
-    height: 70px;
+    /* 両端は端っこ、真ん中は余白うぃ均等に */
+    width: 100%;
+    padding: 15px;
+}
 
-} */
-
-/* ユーザーアイコン */
-.redicon {
+/* フォローユーザーアイコン */
+.posticon {
+    margin-left: 100px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.username {
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.time {
+    width: 30%;
+}
+
+.button {
     display: flex;
+    margin-top: 100px;
+    justify-content: end;
+}
+
+/* ユーザーアイコン */
+.redicon {
+    margin-bottom: 80px;
+    margin-left: 70px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     justify-content: center;
     align-items: center;
+}
 
+/* テキスト、投稿フォーム */
+textarea {
+    resize: none;
+    width: 80%;
+    height: 180px;
+    /* 送信ボタン */
+}
+
+::placeholder {
+    color: #888;
+    /* ここに希望の色を指定 */
+    opacity: 0.3;
+    /* プレースホルダーの透明度を設定 */
+    font-size: 20px;
+    padding-top: 50px;
+    /* topから下に下がる */
+}
+
+
+
+
+
+/* 送信ボタン */
+.post-icon {
+    display: flex;
+    width: 40px;
 }
 
 /* divタグ 　Userのリスト*/
@@ -62,6 +135,40 @@ header {
     cursor: pointer;
 }
 
+/* side-barに記載のログインname */
+.side-name {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* フォロー　フォロワーリストボタン */
+.custom-class {
+    margin-top: 15px;
+    margin-left: 42%;
+    margin-bottom: 15px;
+}
+
+/* 検索ボタン */
+.customs-class {
+    margin-top: 60px;
+    margin-left: 35%;
+}
+
+/* side-bar フォロー数の人数 */
+.follow {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+/* フォロー数 */
+.follow-number {
+    margin-right: 55px;
+}
+
+/* フォロワー数 */
+.follow-numbers {
+    margin-right: 40px;
+}
 
 
 /* main content */
@@ -150,7 +257,6 @@ header {
 
 
     ul {
-
         border-bottom: 1px solid #000;
 
 
@@ -177,24 +283,8 @@ header {
 
 
 
-/* テキスト、投稿フォーム */
-textarea {
-    resize: none;
-    width: 600px;
-    height: 200px;
-
-}
 
 
-::placeholder {
-    color: #888;
-    /* ここに希望の色を指定 */
-    opacity: 0.3;
-    /* プレースホルダーの透明度を設定 */
-    font-size: 20px;
-    padding-top: 50px;
-    /* topから下に下がる */
-}
 
 /* 自分のアイコン */
 /* img.redicon {
@@ -206,11 +296,6 @@ textarea {
 /* } */
 
 
-/* 送信ボタン */
-.post-icon {
-    display: flex;
-    width: 40px;
-}
 
 button {
     border: none;
@@ -227,15 +312,6 @@ button {
 
 }
 
-/* 投稿画面　 */
-.icon-container {
-    display: flex;
-    justify-content: flex-end;
-    /* アイコンを右端に揃える */
-    gap: 20px;
-    /* アイコン同士の間に余白を設定 */
-    margin-top: 200px;
-}
 
 /* 編集ボタン */
 .editicon {
@@ -246,14 +322,10 @@ button {
 /* 削除ボタン */
 .trashicon {
     width: 40px;
-    margin-right: 300px;
-    /* 右に300pxの余白 */
 
 }
 
-.username {
-    margin-left: 300px;
-}
+
 
 /* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
 .content {
