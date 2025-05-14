@@ -8,35 +8,41 @@ body {}
 /* header */
 header {
     background: #186AC9;
+    height: 95px;
+
 }
 
-/* ヘッダー部分 */
-.home-name {
-    display: flex;
-    /* 横並び */
-    justify-content: flex-end;
-    /*  */
+
+.head-icon {
+    margin-right: -10px;
+    margin-top: -10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 .post {
+    padding-bottom: 25px;
     width: 100%;
     align-items: center;
     /* アイテムを中央揃えにする（オプション） */
     border-bottom: 8px solid #e0e0e0;
 }
 
+/* ☆彡index,blade.php */
 /* 投稿画面　 */
 .icon-container {
     display: flex;
     /* アイコンを右端に揃える */
     border-bottom: 1px solid #ddd;
-    gap: 20px;
     /* アイコン同士の間に余白を設定 */
     margin-top: 10px;
 }
 
-/* フォローユーザーの投稿 */
-.post-list {
+
+/* topページのフォローユーザーの投稿 */
+.postindex-list {
+    margin-left: 20px;
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -53,25 +59,57 @@ header {
     border-radius: 50%;
 }
 
+.username-text {
+    font-weight: 500;
+}
+
+.post-text {
+    margin-top: 15px;
+}
+
 .username {
     margin-left: 20px;
     margin-top: 5px;
     width: 100%;
 }
 
+/* 投稿post */
+.posts {
+    margin-top: 15px;
+}
+
 .time {
     width: 30%;
 }
 
-.button {
-    display: flex;
-    margin-top: 100px;
-    justify-content: end;
+/* 編集ボタン */
+.editicon {
+    width: 40px;
+    margin-right: 15px;
+
+}
+
+.trash-btn {
+    display: inline-block;
+    width: 38px;
+    height: 40px;
+    background-image: url('/images/trash.png');
+    /* 通常時 */
+    background-size: cover;
+    text-indent: -9999px;
+    /* テキスト非表示 */
+    border: none;
+}
+
+/* hover時に画像を切り替える */
+.trash-btn:hover {
+    background-image: url('/images/trash-h.png');
+    /* ホバー時 */
 }
 
 /* ユーザーアイコン */
 .redicon {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     margin-left: 70px;
     width: 50px;
     height: 50px;
@@ -81,10 +119,12 @@ header {
 }
 
 /* テキスト、投稿フォーム */
+
 textarea {
+    white-space: pre-wrap;
     resize: none;
-    width: 80%;
-    height: 180px;
+    width: 60%;
+    height: 145px;
     /* 送信ボタン */
 }
 
@@ -98,35 +138,26 @@ textarea {
     /* topから下に下がる */
 }
 
-
-
-
+/* 投稿日時時間の表示 */
+.abc {
+    margin-right: 20px;
+    text-align: end;
+}
 
 /* 送信ボタン */
 .post-icon {
-    display: flex;
-    width: 40px;
+    width: 45px;
+    border-radius: 15%;
 }
 
-/* divタグ 　Userのリスト*/
-.user-list {
+/* 編集削除ボタン */
+.button {
+    margin-right: 20px;
     display: flex;
-    flex-direction: column;
-    /* ユーザーを縦に並べる */
-    margin: 0 auto;
+    margin-top: 100px;
+    justify-content: end;
 }
 
-/* userの名前 */
-.user-item {
-    display: flex;
-
-    align-items: center;
-    padding: 30px;
-    gap: 40px;
-    /* アイコンと名前の間隔 */
-    width: 300px;
-    /* 横幅を統一 */
-}
 
 .follow-button {
     margin-left: 30px;
@@ -135,24 +166,173 @@ textarea {
     cursor: pointer;
 }
 
+/* ☆彡follow/followerlist */
+
+/* フォローユーザーの投稿 */
+.post-list {
+    margin-left: 70px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    /* 両端は端っこ、真ん中は余白うぃ均等に */
+    width: 100%;
+    padding: 15px;
+}
+
+.Follow-items {
+    display: flex;
+    padding-bottom: 30px;
+    border-bottom: 6px solid #e0e0e0;
+}
+
+/* フォローリスト文字 */
+.follow-list {
+    font-weight: 500;
+    margin-left: 9%;
+    margin-top: 5%;
+    font-size: 21px;
+}
+
+/* フォローアイコン並び */
+.follow-lineup {
+    margin-left: 39px;
+    margin-top: 50px;
+}
+
+/* フォローユーザーのアイコン */
+.follow-icon {
+    margin-left: 3px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+/* フォローユーザーの投稿 */
+.Post-item {
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+/* ☆彡seachblade */
+
+.search-container {
+    margin: 0 200px;
+    /* アイコン同士の間に余白を設定 */
+    margin-top: 10px;
+}
+
+/* 検索ボタン */
+.search-icon {
+    width: 55px;
+    border-radius: 10%;
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: -15px;
+}
+
+.user-search {
+    color: #e0e0e0;
+    margin-left: 80px;
+    line-height: 3;
+    width: 55%;
+    margin-top: 45px;
+
+    border: 2px solid #878787;
+    /* 枠を太くする */
+    border-radius: 3%;
+}
+
+.search-word {
+    font-size: 20px;
+    width: 30%;
+    margin-top: 55px;
+    font-weight: 500;
+}
+
+.search-holder {
+    width: 50%;
+}
+
+.search-class {
+    display: flex;
+    padding-bottom: 70px;
+    border-bottom: 7px solid #e0e0e0;
+}
+
+
+/* divタグ 　Userのリスト*/
+.user-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 30px;
+}
+
+.search-user-icon {
+    margin-left: 60px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* userの名前、アイコン、ボタンの塊 */
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    /* アイコンと名前の間隔 */
+}
+
+.search-name {
+    width: 100px;
+}
+
+/* フォロー解除ボタン */
+.btn-danger {
+    white-space: nowrap;
+    margin-right: 90px;
+}
+
+/* フォローするボタン */
+.btn-info {
+    white-space: nowrap;
+    color: #fff;
+    margin-right: 90px;
+}
+
+
+
+/* ☆彡loginblade */
 /* side-barに記載のログインname */
 .side-name {
+    margin-left: 15px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 /* フォロー　フォロワーリストボタン */
 .custom-class {
+    width: 45%;
+    /* 折り返さない */
+    white-space: nowrap;
     margin-top: 15px;
-    margin-left: 42%;
+    margin-left: 52%;
     margin-bottom: 15px;
 }
 
+.search-div {
+    border-block-start: 3px solid #e0e0e0;
+    margin-top: 25px;
+}
+
 /* 検索ボタン */
-.customs-class {
-    margin-top: 60px;
+.customss-class {
+    width: 60%;
+    margin-top: 30px;
     margin-left: 35%;
 }
+
 
 /* side-bar フォロー数の人数 */
 .follow {
@@ -162,14 +342,103 @@ textarea {
 
 /* フォロー数 */
 .follow-number {
+    margin-left: 15px;
     margin-right: 55px;
 }
 
 /* フォロワー数 */
 .follow-numbers {
+    margin-left: 15px;
     margin-right: 40px;
 }
 
+.follow-liststyle {
+    font-size: 13px;
+}
+
+/* ☆彡editprofile */
+.update-form {
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+}
+
+.update-inner {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    gap: 40px;
+}
+
+.icon-group {
+    margin-top: -5px;
+}
+
+.list-group {
+    width: auto;
+}
+
+.form-group {
+    display: flex;
+    padding-bottom: 60px;
+}
+
+.update-text {
+    border: none;
+    margin-left: auto;
+    margin-right: 0px;
+    height: 35px;
+    background-color: #efefef;
+    outline: solid 2px #b7b7b7
+}
+
+.file-box {
+    border: 1px solid #fff;
+    padding: 5px 25px;
+    background-color: #fff;
+}
+
+.image-file {
+    margin-left: auto;
+    width: 57%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    color: #888;
+    background-color: #efefef;
+    border: 2px solid #b7b7b7;
+    font-size: 18px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* . {
+    margin-left: auto;
+    height: 100px;
+    background-color: #efefef;
+    outline: solid 2px #b7b7b7;
+}
+ */
+
+.customs-class {
+    margin-top: -55px;
+    margin-left: 135px;
+    width: 30%;
+}
+
+.text-name {
+    font-size: 22px;
+    margin-right: 80px;
+}
+
+.update-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 
 /* main content */
 #row {
@@ -193,97 +462,125 @@ textarea {
 
 }
 
-
-/* アコーディオンメニュー */
-.menu-btn {
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    background-color: #fff;
-    outline: initial;
-
-    &:focus-visible {
-        box-shadow: 0 0 0 2px blue;
-    }
-
-    .inn {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: block;
-
-        &:before {
-            position: absolute;
-            content: "";
-            top: 40%;
-            left: 50%;
-            width: 15px;
-            height: 15px;
-            transform: translate(-50%, -40%) rotate(135deg);
-            border-top: 1px solid #000;
-            border-right: 1px solid #000;
-            transition: 0.3s ease;
-        }
-    }
-}
-
-.menu-btn.is-open {
-    .inn {
-        &:before {
-            top: 60%;
-            transform: translate(-50%, -60%) rotate(-45deg);
-        }
-    }
-}
-
-.menu {
+/*☆彡login.blade.php */
+#head {
     display: flex;
-    flex-flow: column;
+    justify-content: space-between;
+}
+
+/* アトラスロゴ */
+.top-icon {
+    margin-left: 30px;
+    width: 130px;
+    margin-top: 24px;
+}
+
+/* ヘッダー部分 */
+.home-name {
+    display: flex;
+    /* 横並び */
+    margin: 35px;
+}
+
+.name-number {
+    margin-right: 45px;
+    color: #fff;
+}
+
+.space {
+    margin-left: 1em;
+    /* 1文字分のスペース。必要に応じて調整可 */
+}
+
+/* ハンバーガーボタン */
+.menu-wrapper {
+    margin-top: -10px;
+    margin-right: 10px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-btn {
+    width: 40px;
+    height: 30px;
+    position: relative;
+}
+
+/* メニュー */
+.menu {
+    margin-top: 40px;
+    display: none;
+    flex-direction: column;
     position: absolute;
-    /*absoluteアボソリュートrelativeや、fixedとセットで使う */
-    z-index: 9999;
-    /* レイヤーの一番上 */
-    top: 51px;
-    width: 30%;
-    background-color: #fff;
-    opacity: 0;
-    transition: .3s ease-in-out;
-    pointer-events: none;
-    transform: translateY(-30px);
     right: 0;
+    background-color: #fff;
+    width: 303px;
+}
 
+/* チェックされたときメニューを表示 */
+.menu-toggle:checked~.menu {
+    display: flex;
+}
 
+/* 上向き矢印の形（＼ ／） */
+.menu-btn::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    transform: rotate(135deg);
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transition: 0.3s ease;
+}
 
-    ul {
-        border-bottom: 1px solid #000;
+.menu-btn::after {
+    bottom: 8px;
+    transform: rotate(-45deg);
+}
 
+/* ↓クリックされたとき：下向き矢印の形（／ ＼） */
+.menu-toggle:checked+.menu-btn::before {
+    top: 8px;
+    transform: rotate(-45deg);
+}
 
+.accordion-menu {
+    border-bottom: 1px solid #39599b;
+    padding: 0;
 
-        li {
-            height: 60px;
-            border-top: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* マウスを重ねた際に背景色を変える : hover*/
+    .accordion-code:hover {
+        background-color: #00297e;
+    }
+
+    .accordion-code {
+        height: 100px;
+        border-left: 1px solid #39599b;
+        border-top: 1px solid #39599b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .link-style {
+        padding-top: 13%;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        font-size: 19px;
+        color: #969696;
+    }
+
+    /* マウスを重ねた際に背景色を変える : hover*/
+    .link-style:hover {
+        color: #fff;
     }
 }
-
-.menu.is-open {
-    opacity: 1;
-    /*透明度*/
-    transform: translateY(0);
-    pointer-events: auto;
-    /* その要素のマウスやタッチで反応する範囲を定義するプロパティ
-    liタグをクリックする為 */
-
-}
-
-
-
-
 
 
 /* 自分のアイコン */
@@ -316,13 +613,24 @@ button {
 /* 編集ボタン */
 .editicon {
     width: 40px;
+    margin-right: 15px;
 
 }
 
 /* 削除ボタン */
 .trashicon {
-    width: 40px;
+    border: 1px solid #fff;
 
+    width: 40px;
+}
+
+.trashicon img:last-of-type {
+    opacity: 0;
+    transition: opacity .7s;
+}
+
+.trashicon:hover img {
+    opacity: 1;
 }
 
 

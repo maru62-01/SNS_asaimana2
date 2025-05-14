@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     // プロフィール編集
     Route::get('/editprofile', 'UsersController@edit');
 
-    Route::get('/profile/update', 'UsersController@profileUpdate');
+    Route::post('/profile/update', 'UsersController@profileUpdate')->name('profile.update');
 
 
     // プロフィールページのルートを定義 他ユーザーのプロフィール

@@ -5,29 +5,37 @@
 
 @section('content')
     {{-- フォローしているユーザーのアイコンを表示 --}}
-    <div class="container">
-        <section class="Follow-List">
-            <h1>Follow List</h1>
-            <div class="Follow-items">
+    <section class="Follow-List">
+        <div class="Follow-items">
+            <h1 class="follow-list">フォローリスト</h1>
+            <div class="follow-lineup">
                 @foreach ($follows as $follow)
                     {{-- シンボリックリンクから画像を取得 --}}
                     <a href="{{ route('profile', ['id' => $follow->id]) }}">
-                        <img class="redicon" src="{{ asset('storage/' . $follow->images) }}" alt="フォロー画像">
+                        <img class="follow-icon" src="{{ asset('storage/' . $follow->images) }}" alt="フォロー画像">
                     </a>
                 @endforeach
             </div>
-            {{-- フォローしているユーザーの投稿を表示 --}}
-            @foreach ($posts as $post)
-                <div class="Post-item">
-
+        </div>
+        {{-- フォローしているユーザーの投稿を表示 --}}
+        @foreach ($posts as $post)
+            <div class="Post-item">
+                <ul class="post-list">
                     {{-- 「この投稿をした人のID」 --}}
-                    <a href="{{ route('profile', ['id' => $post->user->id]) }}">
-                        {{-- 投稿者のアイコンにクリックできる --}}
-                        <img class="redicon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像"> </a>
-                    <p>:{{ $post->user->username }}</p>
-                    <p>:{{ $post->post }}</p>
-                    <p>:{{ $post->created_at }}</p>
-            @endforeach
-        </section>
-    </div>
+                    <li><a href="{{ route('profile', ['id' => $post->user->id]) }}">
+                            {{-- 投稿者のアイコンにクリックできる --}}
+                            <img class="follow-icon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像">
+                        </a>
+                    </li>
+                    <li class="username">
+                        <span class="username-text">
+                            {{ $post->user->username }}</span>
+
+                        <p class="posts">{!! nl2br(e($post->post)) !!}</p>
+                    </li>
+                    <li class="time"> {{ $post->created_at->format('Y-n-j H:i') }}</li>
+                </ul>
+            </div>
+        @endforeach
+    </section>
 @endsection

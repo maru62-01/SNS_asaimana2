@@ -26,7 +26,7 @@
 
     <body>
         <header>
-            <h1><img class="logo"src="images/atlas.png"></h1>
+            <h1><img class="top-icon"src="images/atlas.png"></h1>
             <p class="social-text">Social Network Service</p>
         </header>
         <div id="container">

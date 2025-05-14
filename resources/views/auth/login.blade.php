@@ -14,7 +14,7 @@
         {{ Form::password('password', ['class' => 'input']) }}
 
         <div class="login">
-            <button type="submit" class="btn btn-danger btn-sm">ログイン</button>
+            <button type="submit" class="btn btn-danger">ログイン</button>
         </div>
 
         <p class="new-user"><a href="/register">新規ユーザーの方はこちら</a></p>

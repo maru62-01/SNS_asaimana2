@@ -16,7 +16,7 @@
         {{-- </div> --}}
 
         {{-- <div class="item"> --}}
-        <button type="submit"><img class="post-icon" src="images/post.png"></a></button>
+        <button type="submit"><img class="post-icon" src="images/post.png"></button>
         {!! Form::close() !!}
         {{-- </div> --}}
     </div>
@@ -30,26 +30,44 @@
             <div class="icon-container">
                 <!-- 投稿を編集するための記述  -->
                 {{-- 投稿一覧表示 --}}
-                <ul class="post-list">
+                <ul class="postindex-list">
                     {{-- postテーブルとuserテーブルから情報を取得 --}}
                     <li> <img class="posticon" src="{{ asset('storage/' . $list->user->images) }}"></li>
-                    <li class="username">{{ $list->user->username }}
-                        <P>{{ $list->post }}</P>
+                    <li class="username">
+                        <span class="username-text">{{ $list->user->username }}</span>
+                        <p class="post-text">{!! nl2br(e($list->post)) !!}</p>
                     </li>
 
-                    <li>{{ $list->created_at }}
-                        <P>
-                        <div class="button">
-                            <a class="js-modal-open" href="" post="{{ $list->post }}"
-                                post_id="{{ $list->id }}">
-                                <img class="editicon" src="images/edit.png"></a></P>
-
-                            {{-- 投稿を削除するための記述 --}}
-                            <P><a class="trah-btn" href="/post/{{ $list->id }}/delete"
-                                    onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-                                    <img class="trashicon" src="images/trash.png"></a></P>
-                            {{-- aタグは基本get送信 --}}
+                    <li class="time">
+                        <div class="abc">
+                            {{ $list->created_at->format('Y-n-j H:i') }}
                         </div>
+                        @if ($list->user_id == Auth::id())
+                            {{-- 編集ボタンの表示条件 --}}
+                            <div class="button">
+                                <P>
+                                    <a class="js-modal-open" href="" post="{{ $list->post }}"
+                                        post_id="{{ $list->id }}">
+                                        <img class="editicon" src="images/edit.png">
+                                    </a>
+                                </P>
+
+                                {{-- 投稿を削除するための記述 --}}
+                                <P>
+                                    <a class="trash-btn" href="/post/{{ $list->id }}/delete"
+                                        onclick="return confirm('この投稿を削除します。よろしいですか？')">
+                                        <img class="trashicon" src="images/trash.png" alt="delete">
+                                    </a>
+
+                                    {{-- <a class="trah-btn" href="/post/{{ $list->id }}/delete"
+                                        onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
+                                        <img class="trashicon" src="images/trash.png">
+                                        <img class="trashicon" src="images/trash-h.png"> --}}
+                                    {{-- </a> --}}
+                                </P>
+                                {{-- aタグは基本get送信 --}}
+                            </div>
+                        @endif
                     </li>
                     {{-- ＄list-> post $list->user->username --}}
                 </ul>
@@ -57,7 +75,6 @@
             </div>
         @endif {{-- フィルタリング条件の終了 --}}
     @endforeach
-    </div>
 @endsection
 
 

@@ -32,46 +32,56 @@
 <body>
     <header>
         <div id = "head">
-            <h1><a href="{{ url('/top') }}"><img class="top-icon" src="images/atlas.png"></a></h1>
-            <p class="home-name">
-                <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
-                <span>{{ Auth::user()->username }} さん</span>
-            </p> <!-- アコーディオンメニュー -->
-            <div id="section-cont">
-                <button type="button" class="menu-btn">
-                    <span class="inn"></span>
-                </button>
-                <div class="menu">
-                    <ul>
-                        <li class="acordion-code"><a href="{{ url('/top') }}">HOME</a></li>
-                        <li class="acordion-code"><a href="{{ url('/editprofile') }}">プロフィール編集</a></li>
-                        <li class="acordion-code"><a href="{{ url('/logout') }}">ログアウト</a></li>
-                    </ul>
+            <h1 class="atlas-icon"><a href="{{ url('/top') }}"><img class="top-icon" src="images/atlas.png"></a>
+            </h1>
+            <div class="home-name">
+
+                <span class="name-number">
+                    <span class="username">{{ Auth::user()->username }}</span><span class="space"> さん</span>
+                </span>
+                <!-- アコーディオンメニュー -->
+                <div class="menu-wrapper">
+                    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+                    <label for="menu-toggle" class="menu-btn"></label>
+
+                    <div class="menu">
+                        <ul class="accordion-menu">
+                            <li class="accordion-code"><a href="{{ url('/top') }}" class="link-style">HOME</a></li>
+                            <li class="accordion-code"><a href="{{ url('/editprofile') }}"
+                                    class="link-style">プロフィール編集</a></li>
+                            <li class="accordion-code"><a href="{{ url('/logout') }}" class="link-style">ログアウト</a></li>
+                        </ul>
+                    </div>
                 </div>
 
+                <img class="head-icon" src="{{ asset('storage/' . Auth::user()->images) }}">
             </div>
         </div>
     </header>
     <div id="row">
         <div id="container">
             @yield('content')
-            {{-- イールド --}}
-            <div id="side-bar">
-                <div id="confirm">
-                    <p class="side-name">{{ Auth::user()->username }}さんの</p>
-                    {{-- 👇app/providers/AppServiceProviderに記載あり   --}}
-                    <div class="follow">
-                        <p class="follow-number">フォロー数</p>
-                        <p> {{ $followingCount }} 人</p>
-                    </div>
-                    <a href="{{ url('/followlist') }}" class="btn btn-primary custom-class">フォローリスト</a>
-                    <div class="follow">
-                        <p class="follow-numbers">フォロワー数</p>
-                        <p> {{ $followersCount }} 人</p>
-                    </div>
-                    <a href="{{ url('/followerlist') }}" class="btn btn-primary custom-class">フォロワーリスト</a>
-                    <p><a href="{{ url('/search') }}" class="btn btn-primary customs-class">ユーザー検索</a></p>
-                </div>
+        </div>
+        {{-- イールド --}}
+        <div id="side-bar">
+            <p class="side-name">{{ Auth::user()->username }}さんの</p>
+            {{-- 👇app/providers/AppServiceProviderに記載あり   --}}
+            <div class="follow">
+                <p class="follow-number">フォロー数</p>
+                <p> {{ $followingCount }} 人</p>
+            </div>
+            <a href="{{ url('/followlist') }}" class="btn btn-primary custom-class">
+                <span class="follow-liststyle">フォローリスト</span>
+            </a>
+            <div class="follow">
+                <p class="follow-numbers">フォロワー数</p>
+                <p> {{ $followersCount }} 人</p>
+            </div>
+            <a href="{{ url('/followerlist') }}" class="btn btn-primary custom-class">
+                <span class="follow-liststyle">フォロワーリスト</span>
+            </a>
+            <div class="search-div">
+                <p><a href="{{ url('/search') }}" class="btn btn-primary customss-class">ユーザー検索</a></p>
             </div>
         </div>
     </div>
