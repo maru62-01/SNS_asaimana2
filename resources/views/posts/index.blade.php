@@ -85,14 +85,16 @@
     <div class="modal__content">
         {!! Form::open(['url' => '/post/update']) !!}
         {{-- <form action="'/post/update'" method="post"> --}}
-        <textarea name="post" class="modal_post"></textarea>
+        <div class="update_post">
+            <textarea name="post" class="modal_post"></textarea>
 
-        <input type="hidden" name="post_id" class="modal_id" value="">
-        {{-- <input type="submit" value="images/edit.png"> --}}
-        <button type="submit"><img class="edition" src="images/edit.png"></button>
-        {{ csrf_field() }}
-        {!! Form::close() !!}
+            <input type="hidden" name="post_id" class="modal_id" value="">
+            {{-- <input type="submit" value="images/edit.png"> --}}
+            <button type="submit"><img class="edition_post" src="images/edit.png"></button>
+            {{ csrf_field() }}
+            {!! Form::close() !!}
 
-        <a class="js-modal-close" href="">閉じる</a>
+            <a class="js-modal-close" href=""></a>
+        </div>
     </div>
 </div>

@@ -27,12 +27,11 @@
 <!--iphoneのアプリアイコン指定-->
 <link rel="apple-touch-icon-precomposed" href="画像のURL" />
 <!--OGPタグ/twitterカード-->
-</head>
 
 <body>
     <header>
         <div id = "head">
-            <h1 class="atlas-icon"><a href="{{ url('/top') }}"><img class="top-icon" src="images/atlas.png"></a>
+            <h1 class="atlas-icon"><img class="top-icon" src="images/atlas.png">
             </h1>
             <div class="home-name">
 
