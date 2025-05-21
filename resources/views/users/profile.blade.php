@@ -4,7 +4,6 @@
     {{-- プロフィール編集 --}}
 
     {{-- 他ユーザーのプロフィールを開く --}}
-    {{-- <a href="{{ route('profile', ['id' => $user->id]) }}"> --}}
 
     <div class="profile-items">
         <ul class="profile-list">
@@ -26,13 +25,13 @@
                     {{-- フォロー解除ボタン --}}
                     {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
                     @csrf <!-- CSRFトークンを追加 -->
-                    <input type="submit" class="bth bth-danger" value="フォロー解除">
+                    <button type="submit" class="btn btn-danger customs">フォロー解除</button>
                     {!! Form::close() !!}
                 @else
                     {{-- フォローボタン --}}
                     {!! Form::open(['url' => route('follow', ['id' => $user->id]), 'method' => 'post']) !!}
                     @csrf <!-- CSRFトークンを追加 -->
-                    <input type="submit" class="bth bth-primary" value="フォローする">
+                    <button type="submit" class="btn btn-info customs">フォローする</button>
                     {!! Form::close() !!}
                 @endif
             </li>

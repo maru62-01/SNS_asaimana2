@@ -31,7 +31,8 @@
 <body>
     <header>
         <div id = "head">
-            <h1 class="atlas-icon"><img class="top-icon" src="images/atlas.png">
+            <h1 class="atlas-icon"><img class="top-icon" src="{{ asset('images/atlas.png') }}">
+
             </h1>
             <div class="home-name">
 
