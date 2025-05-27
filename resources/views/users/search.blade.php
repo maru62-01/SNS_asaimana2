@@ -27,41 +27,43 @@
     </div>
     <div class="search-container">
         @foreach ($users as $user)
-            {{-- as は、ループ内で現在の要素をどのように扱うかを指定 --}}
-            <ul class="user-list">
-                <li class="user-item"><img class="search-user-icon" src="{{ asset('storage/' . $user->images) }}">
-                    {{-- 特定のユーザーの画像を表示するためのコード --}}
-                    {{--  asset⇒publicディレクトリのパスを返す関数 --}}
-                    <p class="search-name">{{ $user->username }}</p>
-                    {{-- userの名前 --}}
+            @if ($user->id !== Auth::id())
+                {{-- as は、ループ内で現在の要素をどのように扱うかを指定 --}}
+                <ul class="user-list">
+                    <li class="user-item"><img class="search-user-icon" src="{{ asset('storage/' . $user->images) }}">
+                        {{-- 特定のユーザーの画像を表示するためのコード --}}
+                        {{--  asset⇒publicディレクトリのパスを返す関数 --}}
+                        <p class="search-name">{{ $user->username }}</p>
+                        {{-- userの名前 --}}
 
-                </li>
+                    </li>
 
 
-                {{-- フォロー機能の実装 --}}
-                <li> @php
-                    $currentUser = Auth::user(); // ①現在のユーザーを取得
-                    //$currentUser 現在ログインしているユーザーの情報を格納するために使用
-                @endphp
+                    {{-- フォロー機能の実装 --}}
+                    <li> @php
+                        $currentUser = Auth::user(); // ①現在のユーザーを取得
+                        //$currentUser 現在ログインしているユーザーの情報を格納するために使用
+                    @endphp
 
-                    {{-- ②followed_idが$user->idのデータを検索する --}}
-                    {{-- ログインユーザーのフォローしている人の中に、$user->id(今みているID)のデータが存在するか？ --}}
-                    @if ($currentUser->following()->where('followed_id', $user->id)->exists())
-                        {{-- exists　イグジストス --}}
-                        {{-- ③フォロー解除ボタン※フォローしている場合(ture) --}}
-                        {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
-                        @csrf <!-- CSRFトークンを追加 -->
-                        <button type="submit" class="btn btn-danger  btn-lg">フォロー解除</button>
-                        {!! Form::close() !!}
-                    @else
-                        {{-- ④フォローボタン ※フォローしいない場合(false) --}}
-                        {!! Form::open(['url' => route('follow', ['id' => $user->id]), 'method' => 'post']) !!}
-                        @csrf <!-- CSRFトークンを追加 -->
-                        <button type="submit" class="btn btn-info  btn-lg">フォローする</button>
-                        {!! Form::close() !!}
-                    @endif
-                </li>
-            </ul>
+                        {{-- ②followed_idが$user->idのデータを検索する --}}
+                        {{-- ログインユーザーのフォローしている人の中に、$user->id(今みているID)のデータが存在するか？ --}}
+                        @if ($currentUser->following()->where('followed_id', $user->id)->exists())
+                            {{-- exists　イグジストス --}}
+                            {{-- ③フォロー解除ボタン※フォローしている場合(ture) --}}
+                            {!! Form::open(['url' => route('unfollow', ['id' => $user->id]), 'method' => 'post']) !!}
+                            @csrf <!-- CSRFトークンを追加 -->
+                            <button type="submit" class="btn btn-danger  btn-lg">フォロー解除</button>
+                            {!! Form::close() !!}
+                        @else
+                            {{-- ④フォローボタン ※フォローしいない場合(false) --}}
+                            {!! Form::open(['url' => route('follow', ['id' => $user->id]), 'method' => 'post']) !!}
+                            @csrf <!-- CSRFトークンを追加 -->
+                            <button type="submit" class="btn btn-info  btn-lg">フォローする</button>
+                            {!! Form::close() !!}
+                        @endif
+                    </li>
+                </ul>
+            @endif
         @endforeach
     </div>
 @endsection

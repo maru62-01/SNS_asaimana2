@@ -121,8 +121,9 @@ header {
 /* テキスト、投稿フォーム */
 
 textarea {
-    white-space: pre-wrap;
     resize: none;
+    /* 幅と */
+    white-space: pre-wrap;
     width: 60%;
     height: 145px;
     /* 送信ボタン */

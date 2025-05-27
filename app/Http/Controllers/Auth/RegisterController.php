@@ -52,15 +52,17 @@ class RegisterController extends Controller
             $validator = Validator::make($request->all(), [
                 // 記述方法：Validator::make('値の配列', '検証ルールの配列');
                 'username' => 'required|string|min:2|max:12',
-                'mail' => 'required|string|email|min:5|max:40|unique:users',
+                'mail' => 'required|string|email|min:5|max:40|unique:users,mail',
+                // 登録アドレス不可
                 'password' => 'required|string|min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
+                'password_confirmation' => 'required|string|min:8|max:20|regex:/^[a-zA-Z0-9]+$/',
             ]);
             // バリデーションの失敗時の処理
-            // if ($validator->fails()) {
-            //     return redirect('register') //リダイレクト
-            //                 ->withErrors($validator)
-            //                 ->withInput();
-            // }
+            if ($validator->fails()) {
+                return redirect('register') //リダイレクト
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
             // バリデーション成功時の処理
             $username = $request->input('username');
