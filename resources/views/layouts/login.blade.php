@@ -55,7 +55,11 @@
                     </div>
                 </div>
 
-                <img class="head-icon" src="{{ asset('storage/' . Auth::user()->images) }}">
+                @if (Auth::user()->images !== 'icon1.png')
+                    <img class="head-icon" src="{{ asset('storage/' . Auth::user()->images) }}">
+                @else
+                    <img class="head-icon" src="{{ asset('images/icon1.png') }}">
+                @endif
             </div>
         </div>
     </header>

@@ -26,6 +26,10 @@ class PostsController extends Controller
     //↓投稿処理 ＣREATEの実装
     public function postCreate(Request $request)
     {
+        // 入力のバリデーション
+        $request->validate([
+            'coment' => 'required|min:1|max:150',
+        ]);
 
         $name = $request->input('coment'); //input=textarea name="coment"
         $id = auth()->id(); //user情報を取得する
@@ -41,6 +45,12 @@ class PostsController extends Controller
     public function
     postUpdate(Request $request)
     {
+        // バリデーション追加,投稿編集
+        $request->validate([
+            'post' => 'required|min:1|max:150',
+        ]);
+
+
         // Requestとは、bladeファイルに情報をもらうように頼んでいる
         //↓下の46、47行目で、postカラムとidカラムの情報を取得
         $up_post = $request->input('post');

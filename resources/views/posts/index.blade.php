@@ -6,9 +6,19 @@
     <div class="post">
         {!! Form::open(['url' => '/post/create']) !!}
         {{-- <div class="item"> --}}
-        <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
+        @if (Auth::user()->images !== 'icon1.png')
+            <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
+        @else
+            <img class="redicon" src="{{ asset('images/icon1.png') }}">
+        @endif
         {{-- 現在ログインしているユーザーの画像を取得 --}}
-        {{-- </div> --}}
+
+        @if ($errors->has('coment'))
+            <div style="color:red;">
+                {{ $errors->first('coment') }}
+            </div>
+        @endif
+        {{-- エラー文 --}}
 
         {{-- <div class="item"> --}}
         <textarea name="coment" rows="15" cols="80" style="border: none;" minlength="1" maxlength="150"
@@ -86,6 +96,17 @@
         {!! Form::open(['url' => '/post/update']) !!}
         {{-- <form action="'/post/update'" method="post"> --}}
         <div class="update_post">
+            @if ($errors->any())
+                {{-- 1つでもエラーがあるか　any --}}
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <textarea name="post" class="modal_post"></textarea>
 
             <input type="hidden" name="post_id" class="modal_id" value="">

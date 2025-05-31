@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 html {
-    height: 100%;
+    height: 110%;
 }
 
 header {
@@ -35,6 +35,13 @@ header {
     /* divテキストを中央揃え */
     text-align: center;
 
+}
+
+.text-danger {
+    color: red;
+    font-size: 14px;
+    display: block;
+    margin-top: 4px;
 }
 
 .login {

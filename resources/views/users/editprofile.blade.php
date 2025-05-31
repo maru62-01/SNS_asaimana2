@@ -11,7 +11,12 @@
 
           <input type="hidden" name="id" value="{{ Auth::user()->id }}" />
           <div class="icon-group">
-              <img class="update-icon" src="{{ asset('storage/' . Auth::user()->images) }}">
+
+              @if (Auth::user()->images !== 'icon1.png')
+                  <img class="update-icon" src="{{ asset('storage/' . Auth::user()->images) }}">
+              @else
+                  <img class="update-icon" src="{{ asset('images/icon1.png') }}">
+              @endif
           </div>
           <div class="list-group">
               <div class="form-group">
