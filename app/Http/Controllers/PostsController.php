@@ -26,7 +26,7 @@ class PostsController extends Controller
     //↓投稿処理 ＣREATEの実装
     public function postCreate(Request $request)
     {
-        // 入力のバリデーション
+        // 入力のバリデーション、投稿処理
         $request->validate([
             'coment' => 'required|min:1|max:150',
         ]);

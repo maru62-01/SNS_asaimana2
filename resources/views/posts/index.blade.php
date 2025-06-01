@@ -13,22 +13,17 @@
         @endif
         {{-- 現在ログインしているユーザーの画像を取得 --}}
 
+        <textarea name="coment" rows="15" cols="80" style="border: none;" minlength="1" maxlength="150"
+            placeholder="投稿内容を入力してださい。"></textarea>
+        <button type="submit"><img class="post-icon" src="images/post.png"></button>
         @if ($errors->has('coment'))
-            <div style="color:red;">
+            <div style="color:red;text-align: center; padding-right: 45%;">
                 {{ $errors->first('coment') }}
             </div>
         @endif
         {{-- エラー文 --}}
 
-        {{-- <div class="item"> --}}
-        <textarea name="coment" rows="15" cols="80" style="border: none;" minlength="1" maxlength="150"
-            placeholder="投稿内容を入力してださい。"></textarea>
-        {{-- </div> --}}
-
-        {{-- <div class="item"> --}}
-        <button type="submit"><img class="post-icon" src="images/post.png"></button>
         {!! Form::close() !!}
-        {{-- </div> --}}
     </div>
 
 
