@@ -109,6 +109,10 @@ return [
         'password_confirmation' => '確認用パスワード',
         'coment' => '投稿内容',
         'post' => '投稿内容',
+        'IconImage' => 'アイコン画像',
+        'password_confirm' => '確認用パスワード',
+        'newPassword' => '新しいパスワード',
+        'bio' => '自己紹介',
     ],
 
 ];

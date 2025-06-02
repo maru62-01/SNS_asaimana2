@@ -384,6 +384,10 @@ textarea {
     padding-bottom: 50px;
 }
 
+.text-danger {
+    display: grid;
+}
+
 .update-text {
     border: none;
     margin-left: auto;
