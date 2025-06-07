@@ -11,7 +11,11 @@
                     {{-- アイコンにクリックすると、profileページにつながる --}}
                     {{-- route('ルート名', ['パラメータ名' => 値]) --}}
                     <a href="{{ route('profile', ['id' => $follower->id]) }}">
-                        <img class="follow-icon" src="{{ asset('storage/' . $follower->images) }}" alt="フォロワー画像">
+                        @if ($follower->images !== 'icon1.png')
+                            <img class="follow-icon" src="{{ asset('storage/' . $follower->images) }}" alt="フォロワー画像">
+                        @else
+                            <img class="follow-icon" src="{{ asset('images/icon1.png') }}" alt="フォロワー画像">
+                        @endif
                     </a>
                 @endforeach
             </div>
@@ -23,7 +27,11 @@
                     {{-- 投稿者のアイコンにクリックできる --}}
                     <li><a href="{{ route('profile', ['id' => $post->user->id]) }}">
                             {{-- 「この投稿をした人のID」 --}}
-                            <img class="follow-icon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像">
+                            @if ($post->images !== 'icon1.png')
+                                <img class="follow-icon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像">
+                            @else
+                                <img class="follow-icon" src="{{ asset('images/icon1.png') }}" alt="投稿者の画像">
+                            @endif
                         </a>
                     </li>
                     {{-- 投稿内容 --}}

@@ -5,6 +5,7 @@
 
     <div class="post">
         {!! Form::open(['url' => '/post/create']) !!}
+        @csrf
         {{-- <div class="item"> --}}
         @if (Auth::user()->images !== 'icon1.png')
             <img class="redicon" src="{{ asset('storage/' . Auth::user()->images) }}">
@@ -34,10 +35,16 @@
             {{-- フィルタリング条件を追加 --}}
             <div class="icon-container">
                 <!-- 投稿を編集するための記述  -->
-                {{-- 投稿一覧表示 --}}
+                {{-- 投稿一j覧表示 --}}
                 <ul class="postindex-list">
                     {{-- postテーブルとuserテーブルから情報を取得 --}}
-                    <li> <img class="posticon" src="{{ asset('storage/' . $list->user->images) }}"></li>
+                    @if ($list->user->images !== 'icon1.png')
+                        <li> <img class="posticon" src="{{ asset('storage/' . $list->user->images) }}">
+                        </li>
+                    @else
+                        <li> <img class="posticon" src="{{ asset('images/icon1.png') }}">
+                        </li>
+                    @endif
                     <li class="username">
                         <span class="username-text">{{ $list->user->username }}</span>
                         <p class="post-text">{!! nl2br(e($list->post)) !!}</p>

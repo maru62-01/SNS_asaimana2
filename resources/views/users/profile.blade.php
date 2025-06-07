@@ -7,8 +7,13 @@
 
     <div class="profile-items">
         <ul class="profile-list">
-            <li><img class="others_icon" src="{{ asset('storage/' . $user->images) }}" alt="プロフィール画像">
-            </li>
+            @if ($user->images !== 'icon1.png')
+                <li><img class="others_icon" src="{{ asset('storage/' . $user->images) }}" alt="プロフィール画像">
+                </li>
+            @else
+                <li><img class="others_icon" src="{{ asset('images/icon1.png') }}" alt="プロフィール画像">
+                </li>
+            @endif
             <li class="username_bio">
                 <p class="profile-username">ユーザー名　　{{ $user->username }}</p> <!-- ユーザー名 -->
                 <p class="profile-bio">自己紹介　　　{{ $user->bio }}</p>
@@ -45,7 +50,13 @@
         <div class="icon-container">
 
             <ul class="postindex-list">
-                <li><img class="redicon" src="{{ asset('storage/' . $user->images) }}" alt="プロフィール画像">
+
+                <li>
+                    @if ($post->user->images !== 'icon1.png')
+                        <img class="redicon" src="{{ asset('storage/' . $post->user->images) }}" alt="プロフィール画像">
+                    @else
+                        <img class="redicon" src="{{ asset('images/icon1.png') }}" alt="プロフィール画像">
+                    @endif
                 </li>
 
                 <li class="username">

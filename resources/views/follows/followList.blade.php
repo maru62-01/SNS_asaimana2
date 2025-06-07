@@ -12,7 +12,12 @@
                 @foreach ($follows as $follow)
                     {{-- シンボリックリンクから画像を取得 --}}
                     <a href="{{ route('profile', ['id' => $follow->id]) }}">
-                        <img class="follow-icon" src="{{ asset('storage/' . $follow->images) }}" alt="フォロー画像">
+
+                        @if ($follow->images !== 'icon1.png')
+                            <img class="follow-icon" src="{{ asset('storage/' . $follow->images) }}" alt="フォロー画像">
+                        @else
+                            <img class="follow-icon" src="{{ asset('images/icon1.png') }}" alt="フォロー画像">
+                        @endif
                     </a>
                 @endforeach
             </div>
@@ -24,7 +29,11 @@
                     {{-- 「この投稿をした人のID」 --}}
                     <li><a href="{{ route('profile', ['id' => $post->user->id]) }}">
                             {{-- 投稿者のアイコンにクリックできる --}}
-                            <img class="follow-icon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像">
+                            @if ($post->user->images !== 'icon1.png')
+                                <img class="follow-icon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像">
+                            @else
+                                <img class="follow-icon" src="{{ asset('images/icon1.png') }}" alt="投稿者の画像">
+                            @endif
                         </a>
                     </li>
                     <li class="username">

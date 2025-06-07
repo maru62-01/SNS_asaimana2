@@ -112,6 +112,16 @@ btn {
 
 body {
     height: 100vh;
+    /* ← 高さを100%から100vhに変更 */
+    margin: 0;
+    /* ← 余白をなくすために追加 */
+    padding: 0;
+    /* ← パディングをなくすために追加 */
     background: linear-gradient(180deg, #0072ff 0%, #f8d800 100%);
-    /* deg 角度 */
+    background-repeat: no-repeat;
+    /* ← 繰り返し防止 */
+    background-attachment: fixed;
+    /* ← スクロールしても固定 */
+    background-size: cover;
+    /* ← 拡大率に対応させる */
 }
