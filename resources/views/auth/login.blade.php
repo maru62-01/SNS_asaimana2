@@ -3,7 +3,7 @@
 @section('content')
     <!-- 適切なURLを入力してください -->
     {!! Form::open(['url' => '/login']) !!}
-    {{-- @csrf --}}
+    @csrf
 
 
     <div class="login-container">

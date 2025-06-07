@@ -1,7 +1,7 @@
 @extends('layouts.logout')
 
 @section('content')
-    {!! Form::open(['url' => '/login']) !!}
+    {{-- {!! Form::open(['url' => '/login']) !!} --}}
 
     <div class="login-container">
         <p class="boldfont">{{ session('userName') }}さん</p>
@@ -11,8 +11,9 @@
         <p class="go-welcome">早速ログインをしてみましょう。</p>
 
         {{-- onclick属性　クリックされたときに実行する動作を指定するための属性 --}}
-        <button type="submit" class="btn btn-danger btn-sm">ログイン画面へ</button onclick="location.href='/login';">
-        {!! Form::close() !!}
+        {{-- <button type="submit" class="btn btn-danger btn-sm">ログイン画面へ</button onclick="location.href='/login';"> --}}
+        {{-- {!! Form::close() !!} --}}
+        <p class="btn"><a href="/login">ログイン画面へ</a></p>
 
     </div>
 @endsection
