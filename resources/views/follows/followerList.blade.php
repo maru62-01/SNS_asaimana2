@@ -27,7 +27,7 @@
                     {{-- 投稿者のアイコンにクリックできる --}}
                     <li><a href="{{ route('profile', ['id' => $post->user->id]) }}">
                             {{-- 「この投稿をした人のID」 --}}
-                            @if ($post->images !== 'icon1.png')
+                            @if ($post->user->images !== 'icon1.png')
                                 <img class="follow-icon" src="{{ asset('storage/' . $post->user->images) }}" alt="投稿者の画像">
                             @else
                                 <img class="follow-icon" src="{{ asset('images/icon1.png') }}" alt="投稿者の画像">

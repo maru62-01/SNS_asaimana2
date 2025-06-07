@@ -13,7 +13,7 @@
         {{-- onclick属性　クリックされたときに実行する動作を指定するための属性 --}}
         {{-- <button type="submit" class="btn btn-danger btn-sm">ログイン画面へ</button onclick="location.href='/login';"> --}}
         {{-- {!! Form::close() !!} --}}
-        <p class="btn"><a href="/login">ログイン画面へ</a></p>
+        <p class="btn"><a href="/login" class="btn btn-danger btn-sm">ログイン画面へ</a></p>
 
     </div>
 @endsection
